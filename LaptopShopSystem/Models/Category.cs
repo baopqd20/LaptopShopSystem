@@ -9,7 +9,7 @@ namespace LaptopShopSystem.Models
     {
         public int Id  { get; set; }
         public string? Name { get; set; }
-        public string? Des { get; set; }
+        ICollection<ProductCategory> ProductCategories { get; set; }
 
     }
 }

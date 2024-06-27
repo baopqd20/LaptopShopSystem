@@ -7,6 +7,6 @@ namespace LaptopShopSystem.Models
         public int Id  { get; set; }
         public int User_Id  { get; set; }
         public required User User  { get; set; }
-        public List<CartItem>? CartItems { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
     }
 }
