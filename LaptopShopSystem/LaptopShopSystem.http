@@ -1,0 +1,6 @@
+@LaptopShopSystem_HostAddress = http://localhost:5096
+
+GET {{LaptopShopSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
