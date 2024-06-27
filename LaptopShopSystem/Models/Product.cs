@@ -19,7 +19,6 @@ namespace LaptopShopSystem.Models
         public string? Type { get; set; }        
         public ProductDetails Details { get; set; }
         public DateTime Created { get; set; }
-        public Category Category  { get; set; }
         public ICollection<ProductCategory> ProductCategories { get; set; }
         public ICollection<Wishlist> Wishlists { get; set; }
         public Brand Brand { get; set; }
