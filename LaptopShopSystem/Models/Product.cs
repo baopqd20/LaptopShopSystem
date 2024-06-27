@@ -20,8 +20,8 @@ namespace LaptopShopSystem.Models
         public ProductDetails Details { get; set; }
         public DateTime Created { get; set; }
         public Category Category  { get; set; }
-        ICollection<ProductCategory> ProductCategories { get; set; }
-        ICollection<Wishlist> Wishlists { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
         public Brand Brand { get; set; }
     }
 }

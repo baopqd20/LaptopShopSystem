@@ -10,7 +10,7 @@
         public string Address { get; set; }
         public string Password {  get; set; }
         public string Role { get; set; }
-        ICollection<Wishlist> Wishlists { get; set; }
+        public ICollection<Wishlist> Wishlists { get; set; }
 
     }
 }
