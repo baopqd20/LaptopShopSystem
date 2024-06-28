@@ -2,6 +2,6 @@
 {
     public interface IJwtRepository
     {
-        string GenerateJwtToken(string name, string role);
+        string GenerateJwtToken(string name, string role, int userId);
     }
 }

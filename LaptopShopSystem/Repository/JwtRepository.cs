@@ -14,7 +14,7 @@ namespace LaptopShopSystem.Repository
         {
             _configuration = configuration;
         }
-        public string GenerateJwtToken(string name, string role)
+        public string GenerateJwtToken(string name, string role,int userId)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -24,6 +24,7 @@ namespace LaptopShopSystem.Repository
             new Claim(JwtRegisteredClaimNames.Sub, name),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(ClaimTypes.Role, role),
+            new Claim("UserId", userId.ToString())
 
         };
 

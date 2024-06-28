@@ -4,6 +4,7 @@ using LaptopShopSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaptopShopSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240628070201_UpdateCart")]
+    partial class UpdateCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,13 +44,18 @@ namespace LaptopShopSystem.Migrations
 
             modelBuilder.Entity("LaptopShopSystem.Models.Cart", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("User_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("UserId"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("User_Id"));
 
-                    b.HasKey("UserId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("User_Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Carts");
                 });
@@ -63,7 +71,7 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CartUserId")
+                    b.Property<int?>("CartUser_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Cart_Id")
@@ -86,7 +94,7 @@ namespace LaptopShopSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartUserId");
+                    b.HasIndex("CartUser_Id");
 
                     b.HasIndex("OrderId");
 
@@ -353,11 +361,22 @@ namespace LaptopShopSystem.Migrations
                     b.ToTable("Wishlist");
                 });
 
+            modelBuilder.Entity("LaptopShopSystem.Models.Cart", b =>
+                {
+                    b.HasOne("LaptopShopSystem.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("LaptopShopSystem.Models.CartItem", b =>
                 {
                     b.HasOne("LaptopShopSystem.Models.Cart", null)
                         .WithMany("CartItems")
-                        .HasForeignKey("CartUserId");
+                        .HasForeignKey("CartUser_Id");
 
                     b.HasOne("LaptopShopSystem.Models.Order", null)
                         .WithMany("OrderItems")
