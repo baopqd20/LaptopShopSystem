@@ -16,7 +16,8 @@ namespace LaptopShopSystem.Models
         public int Price { get; set; }
         public int Remain { get; set; }
         public int Total { get; set; }
-        public string? Type { get; set; }        
+        public string? Type { get; set; } 
+        
         public ProductDetails Details { get; set; }
         public DateTime Created { get; set; }
         public ICollection<ProductCategory> ProductCategories { get; set; }

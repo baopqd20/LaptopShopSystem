@@ -12,6 +12,8 @@ namespace LaptopShopSystem.Helper
             CreateMap<User, UserRegisterDto>().ReverseMap();
             CreateMap<User, UserUpdateDto>().ReverseMap();
             CreateMap<User, UserAdminDto>().ReverseMap();
+            CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
         }
     }
 }
