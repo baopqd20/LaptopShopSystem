@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using LaptopShopSystem.Mapper;
 using LaptopShopSystem.Dto;
+using LaptopShopSystem.Helper;
 namespace LaptopShopSystem.Controllers
 {
     [ApiController]
@@ -56,7 +57,8 @@ namespace LaptopShopSystem.Controllers
             return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
         }
 
-        [HttpGet("{id}")]
+
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetProductById(int id)
         {
 
@@ -73,7 +75,31 @@ namespace LaptopShopSystem.Controllers
             }
             var productDto = product.ToProdResponse();
             return Ok(productDto);
-            // return Ok(product);
-        }   
+        }
+
+
+        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject queryObject)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var products = await _productRepo.GetProducts(queryObject);
+            var productDtos = products.Select(p => p.ToProdResponse());
+            return Ok(productDtos);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromBody] ProductUpdateDto productUpdateDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok("done");
+        }
     }
 }
