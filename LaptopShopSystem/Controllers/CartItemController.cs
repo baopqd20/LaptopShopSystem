@@ -4,6 +4,7 @@ using LaptopShopSystem.Dto;
 using LaptopShopSystem.Interfaces;
 using LaptopShopSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 
 namespace LaptopShopSystem.Controllers
@@ -48,7 +49,7 @@ namespace LaptopShopSystem.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetCartItemInACart(int cartId)
         {
-            return Ok(_cartItemRepository);
+            return Ok(JsonConvert.SerializeObject(_cartItemRepository.GetCartItemsByCartId(cartId), Formatting.Indented));
         }
 
     }

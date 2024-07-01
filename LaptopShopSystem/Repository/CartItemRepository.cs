@@ -2,6 +2,7 @@
 using LaptopShopSystem.Dto;
 using LaptopShopSystem.Interfaces;
 using LaptopShopSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaptopShopSystem.Repository
 {
@@ -40,7 +41,12 @@ namespace LaptopShopSystem.Repository
 
         public ICollection<CartItem> GetCartItemsByCartId(int cartId)
         {
-            return _context.CartItems.Where(p => p.Cart.UserId == cartId).ToList();
+            return _context.CartItems
+            .Include(ci => ci.Cart) // Nạp thông tin của Cart
+            .Include(ci => ci.Product) // Nạp thông tin của Product
+            .Where(ci => ci.Cart.UserId == cartId)
+            .ToList();
+            
         }
 
         public bool Save()

@@ -155,6 +155,10 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("Discount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
