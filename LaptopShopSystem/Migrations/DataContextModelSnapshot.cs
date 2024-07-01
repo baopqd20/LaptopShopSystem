@@ -143,11 +143,17 @@ namespace LaptopShopSystem.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Color")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -161,12 +167,9 @@ namespace LaptopShopSystem.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("brandId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("brandId");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Products");
                 });
@@ -374,7 +377,7 @@ namespace LaptopShopSystem.Migrations
                 {
                     b.HasOne("LaptopShopSystem.Models.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("brandId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

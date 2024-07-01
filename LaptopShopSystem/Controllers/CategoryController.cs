@@ -25,14 +25,14 @@ namespace LaptopShopSystem.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        [Authorize]
+        // [Authorize]
         public IActionResult CreateCategory([FromBody] CategoryDto categoryCreate)
         {
-            var isAdmin = User.IsInRole("admin");
-            if (!isAdmin)
-            {
-                return Forbid();
-            }
+            // var isAdmin = User.IsInRole("admin");
+            // if (!isAdmin)
+            // {
+            //     return Forbid();
+            // }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace LaptopShopSystem.Models
+namespace LaptopShopSystem.Dto.Product
 {
-    public class Product
+    public class ProductResponseDto
     {
         public int Id { get; set; }
         public int BrandId { get; set; }
@@ -17,11 +15,9 @@ namespace LaptopShopSystem.Models
         public int Remain { get; set; }
         public int Total { get; set; }
         public string? Type { get; set; }
-
-        public required ProductDetails Details { get; set; }
+        public required ProductDetailsDto Details { get; set; }
+        public List<CategoryDto> Categories { get; set; }
+        public BrandDto? Brand { get; set; }
         public DateTime Created { get; set; }
-        public required ICollection<ProductCategory> ProductCategories { get; set; }
-        public ICollection<Wishlist> Wishlists { get; set; }
-        public Brand? Brand { get; set; }
     }
 }

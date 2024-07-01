@@ -1,8 +1,12 @@
-﻿namespace LaptopShopSystem.Models
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace LaptopShopSystem.Dto.Product
 {
-    public class ProductDetails
+    public class ProductDetailsDto
     {
-        public int ProductId { get; set; }
         public string? Weight { get; set; }
         public string? Image_Urls { get; set; }
         public string? Audio { get; set; }
