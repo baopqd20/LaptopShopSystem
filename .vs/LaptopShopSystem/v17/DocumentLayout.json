@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\helper\\mapperprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\helper\\mapperprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\interfaces\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\interfaces\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\models\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\models\\productdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\repository\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\models\\cartitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\controllers\\cartitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\dto\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\repository\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\repository\\cartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\interfaces\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\interfaces\\icartitemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|c:\\users\\admin\\source\\repos\\laptopshopsystem\\laptopshopsystem\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23E3AA93-CDDC-4D20-8CF3-B0717D7C8AE2}|LaptopShopSystem\\LaptopShopSystem.csproj|solutionrelative:laptopshopsystem\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 193,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,55 +50,101 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MapperProfiles.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Helper\\MapperProfiles.cs",
               "RelativeDocumentMoniker": "LaptopShopSystem\\Helper\\MapperProfiles.cs",
               "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Helper\\MapperProfiles.cs",
               "RelativeToolTip": "LaptopShopSystem\\Helper\\MapperProfiles.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAgAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T09:38:31.228Z",
+              "WhenOpened": "2024-07-01T07:19:39.114Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "LaptopShopSystem\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "LaptopShopSystem\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAA7wGkAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "ProductDetails.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\ProductDetails.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Models\\ProductDetails.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\ProductDetails.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Models\\ProductDetails.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T09:30:32.345Z",
+              "WhenOpened": "2024-07-01T07:17:33.942Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\Cart.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Models\\Cart.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T06:24:56.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ICartItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Interfaces\\ICartItemRepository.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Interfaces\\ICartItemRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Interfaces\\ICartItemRepository.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Interfaces\\ICartItemRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T06:23:21.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CartItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Repository\\CartItemRepository.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Repository\\CartItemRepository.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Repository\\CartItemRepository.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Repository\\CartItemRepository.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwCkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T06:22:53.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CartItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Dto\\CartItemDto.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Dto\\CartItemDto.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Dto\\CartItemDto.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Dto\\CartItemDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T06:22:29.496Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CategoryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Repository\\CategoryRepository.cs",
-              "RelativeDocumentMoniker": "LaptopShopSystem\\Repository\\CategoryRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Repository\\CategoryRepository.cs",
-              "RelativeToolTip": "LaptopShopSystem\\Repository\\CategoryRepository.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAswDcAAAAwAAAA",
+              "Title": "CartItemController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Controllers\\CartItemController.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Controllers\\CartItemController.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Controllers\\CartItemController.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Controllers\\CartItemController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwDIAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T09:29:44.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-01T06:19:34.416Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ICategoryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Interfaces\\ICategoryRepository.cs",
-              "RelativeDocumentMoniker": "LaptopShopSystem\\Interfaces\\ICategoryRepository.cs",
-              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Interfaces\\ICategoryRepository.cs",
-              "RelativeToolTip": "LaptopShopSystem\\Interfaces\\ICategoryRepository.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAqwAsAAAAeAAAA",
+              "Title": "CartItem.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\CartItem.cs",
+              "RelativeDocumentMoniker": "LaptopShopSystem\\Models\\CartItem.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\LaptopShopSystem\\LaptopShopSystem\\Models\\CartItem.cs",
+              "RelativeToolTip": "LaptopShopSystem\\Models\\CartItem.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T09:28:44.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-01T06:16:36.654Z"
             }
           ]
         }

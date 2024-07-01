@@ -4,6 +4,7 @@ using LaptopShopSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaptopShopSystem.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240701030455_UpdateCartItem")]
+    partial class UpdateCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,6 +69,9 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("CartUserId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -78,6 +84,8 @@ namespace LaptopShopSystem.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CartUserId");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -148,6 +156,9 @@ namespace LaptopShopSystem.Migrations
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -343,10 +354,14 @@ namespace LaptopShopSystem.Migrations
             modelBuilder.Entity("LaptopShopSystem.Models.CartItem", b =>
                 {
                     b.HasOne("LaptopShopSystem.Models.Cart", "Cart")
-                        .WithMany()
+                        .WithMany("CartItems")
                         .HasForeignKey("CartUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("LaptopShopSystem.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("LaptopShopSystem.Models.Product", "Product")
                         .WithMany()
@@ -402,11 +417,13 @@ namespace LaptopShopSystem.Migrations
 
             modelBuilder.Entity("LaptopShopSystem.Models.ProductDetails", b =>
                 {
-                    b.HasOne("LaptopShopSystem.Models.Product", null)
+                    b.HasOne("LaptopShopSystem.Models.Product", "Product")
                         .WithOne("Details")
                         .HasForeignKey("LaptopShopSystem.Models.ProductDetails", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Review", b =>
@@ -448,9 +465,19 @@ namespace LaptopShopSystem.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("LaptopShopSystem.Models.Cart", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
             modelBuilder.Entity("LaptopShopSystem.Models.Category", b =>
                 {
                     b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>

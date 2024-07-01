@@ -10,9 +10,9 @@ namespace LaptopShopSystem.Models
     public class Product
     {
         public int Id { get; set; }
+        public string Title { get; set; }
         public int brandId {  get; set; }
         public string? Color { get; set; }
-        public int Discount { get; set; }
         public int Price { get; set; }
         public int Remain { get; set; }
         public int Total { get; set; }

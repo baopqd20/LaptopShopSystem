@@ -16,11 +16,10 @@
         public string? Pin { get; set; }
         public string? Ram { get; set; }
         public string? Size { get; set; }
-        public string? Title { get; set; }
+        
         public string? Vga { get; set; }
         public string? Webcam { get; set; }
         public string? Wifi { get; set; }
         public string? Port { get; set; }
-        public Product Product { get; set; }
     }
 }

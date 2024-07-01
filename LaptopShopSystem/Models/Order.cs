@@ -8,7 +8,7 @@
         public int ShipFee { get; set; }
         public int Total {  get; set; }
         public DateTime CreateTime { get; set; }
-        public ICollection<CartItem> OrderItems { get; set; }
+        //public ICollection<CartItem> OrderItems { get; set; }
         public string PayMethod { get; set; }
         public User User { get; set; }
     }
