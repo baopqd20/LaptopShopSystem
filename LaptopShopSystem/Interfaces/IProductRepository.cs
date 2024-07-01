@@ -2,18 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LaptopShopSystem.Helper;
 using LaptopShopSystem.Models;
 
 namespace LaptopShopSystem.Interfaces
 {
     public interface IProductRepository
     {
-        ICollection<Product> GetProducts();
+        Task<List<Product>> GetProducts(QueryObject queryObject);
         Product GetProduct(int id);
         ICollection<ProductDetails> GetProductDetailsByProductId(int product_Id);
 
-        ICollection<Product> GetProductsByName(string Name);
-        ICollection<Product> GetProductsByPrice(int Price);
         Task<Product> CreateAsync(Product ProductModel);
         // TODO 
         // Task<Product?> UpdateAsync(int id, UpdateProductRequestDto ProductDto); 

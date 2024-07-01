@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using LaptopShopSystem.Data;
+using LaptopShopSystem.Helper;
 using LaptopShopSystem.Interfaces;
 using LaptopShopSystem.Models;
 
@@ -22,7 +20,7 @@ namespace LaptopShopSystem.Repository
         }
         public async Task<Product> CreateAsync(Product ProductModel)
         {
-       
+
             await _context.Products.AddAsync(ProductModel);
             await _context.SaveChangesAsync();
             return ProductModel;
@@ -43,20 +41,50 @@ namespace LaptopShopSystem.Repository
             throw new NotImplementedException();
         }
 
-        public ICollection<Product> GetProducts()
+
+
+        public async Task<List<Product>> GetProducts(QueryObject queryObject)
         {
-            throw new NotImplementedException();
+            var query = _context.Products
+            .Include(p => p.Details)
+            .Include(p => p.Brand)
+            .Include(p => p.ProductCategories)
+                .ThenInclude(pc => pc.Category)
+            .AsQueryable();
+                
+            if (!string.IsNullOrEmpty(queryObject.ProductName))
+            {
+                query = query.Where(p => p.Name.Contains(queryObject.ProductName));
+            }
+
+            if (!string.IsNullOrEmpty(queryObject.BrandName))
+            {
+                query = query.Where(p => p.Brand.Name.Contains(queryObject.BrandName));
+            }
+
+            if (!string.IsNullOrEmpty(queryObject.CategoryName))
+            {
+                query = query.Where(p => p.ProductCategories.Any(pc => pc.Category.Name.Contains(queryObject.CategoryName)));
+            }
+
+            if (!string.IsNullOrEmpty(queryObject.SortBy))
+            {
+                if (queryObject.IsDecsending)
+                {
+                    query = query.OrderByDescending(p => EF.Property<object>(p, queryObject.SortBy));
+                }
+                else
+                {
+                    query = query.OrderBy(p => EF.Property<object>(p, queryObject.SortBy));
+                }
+            }
+
+            query = query.Skip((queryObject.PageNumber - 1) * queryObject.PageSize)
+                         .Take(queryObject.PageSize);
+
+            return await query.ToListAsync();
         }
 
-        public ICollection<Product> GetProductsByName(string Name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICollection<Product> GetProductsByPrice(int Price)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<bool> ProductExists(int id)
         {

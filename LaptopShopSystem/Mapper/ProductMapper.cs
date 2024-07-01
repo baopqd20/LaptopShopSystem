@@ -16,6 +16,7 @@ namespace LaptopShopSystem.Mapper
             {
                 BrandId = productModel.BrandId,
                 Color = productModel.Color,
+                Name = productModel.Name,
                 Discount = productModel.Discount,
                 Price = productModel.Price,
                 Remain = productModel.Remain,
@@ -52,6 +53,7 @@ namespace LaptopShopSystem.Mapper
             return new Product
             {
                 BrandId = productDto.BrandId,
+                Name = productDto.Name,
                 Color = productDto.Color,
                 Discount = productDto.Discount,
                 Price = productDto.Price,
@@ -92,6 +94,7 @@ namespace LaptopShopSystem.Mapper
             {
                 Id = product.Id,
                 BrandId = product.BrandId,
+                Name = product.Name,
                 Color = product.Color,
                 Discount = product.Discount,
                 Price = product.Price,
