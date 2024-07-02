@@ -23,7 +23,7 @@ namespace LaptopShopSystem.Repository
         }
         public async Task<Product> CreateAsync(Product ProductModel)
         {
-            
+
             await _context.Products.AddAsync(ProductModel);
             await _context.SaveChangesAsync();
             return ProductModel;
@@ -31,13 +31,28 @@ namespace LaptopShopSystem.Repository
 
         public async Task<Product?> DeleteAsync(int id)
         {
-            var productModel = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
+            var productModel = await _context.Products
+        .Include(p => p.Details)
+        .Include(p => p.ProductCategories)
+        .FirstOrDefaultAsync(p => p.Id == id);
             if (productModel == null)
             {
                 return null;
             }
+            if(productModel.Details !=null){
+                _context.ProductDetails.Remove(productModel.Details);
+            }
+            //Remove reviews
+            var reviews = _context.Reviews.Where(r=> r.ProductId == id);
+            _context.Reviews.RemoveRange(reviews);
+
+            _context.ProductCategories.RemoveRange(productModel.ProductCategories);
+            // Remove from Wishlists
+            var wishlists = _context.Wishlist.Where(w => w.ProductId == id);
+            _context.Wishlist.RemoveRange(wishlists);
+            // Remove producgtModel
             _context.Products.Remove(productModel);
-            // TODO: remove productdetail
+
             await _context.SaveChangesAsync();
             return productModel;
         }
@@ -109,7 +124,7 @@ namespace LaptopShopSystem.Repository
         {
             var existingProduct = await _context.Products
          .Include(p => p.Details)
-         .Include(p=>p.Brand)
+         .Include(p => p.Brand)
          .Include(p => p.ProductCategories)
          .ThenInclude(pc => pc.Category)
          .FirstOrDefaultAsync(x => x.Id == id);

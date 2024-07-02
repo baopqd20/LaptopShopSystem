@@ -47,8 +47,6 @@ namespace LaptopShopSystem.Data
                 .HasKey(k => k.ProductId);
             modelBuilder.Entity<Cart>()
                 .HasKey(k => k.UserId);
-           
         }
-
     }
 }
