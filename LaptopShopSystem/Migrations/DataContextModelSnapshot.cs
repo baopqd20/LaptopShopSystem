@@ -60,10 +60,7 @@ namespace LaptopShopSystem.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CartUserId")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -72,12 +69,9 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitPrice")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CartUserId");
+                    b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
@@ -133,6 +127,36 @@ namespace LaptopShopSystem.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UnitPrice")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>
@@ -351,7 +375,7 @@ namespace LaptopShopSystem.Migrations
                 {
                     b.HasOne("LaptopShopSystem.Models.Cart", "Cart")
                         .WithMany()
-                        .HasForeignKey("CartUserId")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -375,6 +399,13 @@ namespace LaptopShopSystem.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.OrderItem", b =>
+                {
+                    b.HasOne("LaptopShopSystem.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>
@@ -458,6 +489,11 @@ namespace LaptopShopSystem.Migrations
             modelBuilder.Entity("LaptopShopSystem.Models.Category", b =>
                 {
                     b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>
