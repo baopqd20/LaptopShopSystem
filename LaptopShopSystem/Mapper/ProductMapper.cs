@@ -90,7 +90,7 @@ namespace LaptopShopSystem.Mapper
         }
         public static ProductResponseDto ToProdResponse(this Product product)
         {
-            return new ProductResponseDto
+            var responseDto = new ProductResponseDto
             {
                 Id = product.Id,
                 BrandId = product.BrandId,
@@ -102,7 +102,7 @@ namespace LaptopShopSystem.Mapper
                 Total = product.Total,
                 Type = product.Type,
                 Created = product.Created,
-                Details = new ProductDetailsDto
+                Details = product.Details != null ? new ProductDetailsDto
                 {
                     Weight = product.Details.Weight,
                     Image_Urls = product.Details.Image_Urls,
@@ -122,17 +122,20 @@ namespace LaptopShopSystem.Mapper
                     Webcam = product.Details.Webcam,
                     Wifi = product.Details.Wifi,
                     Port = product.Details.Port,
-                },
-                Categories = product.ProductCategories
-            .Select(pc => new CategoryDto
-            {
-                Name = pc.Category.Name
-            }).ToList(),
-                Brand = new BrandDto
+                } : new ProductDetailsDto(), 
+                Categories = product.ProductCategories != null ? product.ProductCategories
+                    .Select(pc => new CategoryDto
+                    {
+                        Name = pc.Category?.Name 
+                    }).ToList() : new List<CategoryDto>(), 
+                Brand = product.Brand != null ? new BrandDto
                 {
                     Name = product.Brand.Name
-                }
+                } : null
             };
+
+            return responseDto;
         }
+
     }
 }

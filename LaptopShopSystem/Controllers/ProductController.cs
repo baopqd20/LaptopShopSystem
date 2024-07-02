@@ -45,29 +45,27 @@ namespace LaptopShopSystem.Controllers
             }
 
             var brand = await _context.Brands.FindAsync(productDto.BrandId);
+          
             if (brand == null)
             {
                 return BadRequest("Invalid BrandId");
             }
 
             var product = productDto.ToProductModel();
-
+            Console.WriteLine(product.ProductCategories);
             _context.ProductDetails.Add(product.Details);
             await _productRepo.CreateAsync(product);
-            return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
+            return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product.ToProdResponse());
         }
 
 
         [HttpGet("{id:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> GetProductById(int id)
         {
 
-            var product = await _context.Products
-         .Include(p => p.Details)
-         .Include(p => p.Brand)
-         .Include(p => p.ProductCategories)
-         .ThenInclude(pc => pc.Category)
-         .FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _productRepo.GetProduct(id);
 
             if (product == null)
             {
@@ -93,13 +91,18 @@ namespace LaptopShopSystem.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromBody] ProductUpdateDto productUpdateDto)
+        public async Task<IActionResult> UpdateProduct([FromRoute] int id, [FromBody] ProductDto productDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            return Ok("done");
+            var product = await _productRepo.UpdateAsync(id,productDto);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product.ToProdResponse());
         }
     }
 }
