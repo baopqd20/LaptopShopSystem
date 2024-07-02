@@ -16,6 +16,7 @@ namespace LaptopShopSystem.Repository
         {
             await _context.Reviews.AddAsync(review);
             await _context.SaveChangesAsync();
+            await UpdateProductRate(review.ProductId);
             return review;
         }
 
@@ -28,6 +29,7 @@ namespace LaptopShopSystem.Repository
             }
             _context.Remove(existingReview);
             await _context.SaveChangesAsync();
+            await UpdateProductRate(existingReview.ProductId);
             return existingReview;
         }
 
@@ -58,7 +60,34 @@ namespace LaptopShopSystem.Repository
             existingReview.Rating = reviewModel.Rating;
 
             await _context.SaveChangesAsync();
+            await UpdateProductRate(existingReview.ProductId);
             return existingReview;
+        }
+
+        //Update rate for product
+        private async Task UpdateProductRate(int productId)
+        {
+
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            var reviews = await _context.Reviews
+                .Where(r => r.ProductId == productId)
+                .ToListAsync();
+
+
+            if (product != null)
+            {
+                if (reviews.Count!=0)
+                {
+                    product.Rate = reviews.Average(r => r.Rating);
+                }
+                else
+                {
+                    product.Rate = 0; 
+                }
+                // Update product in database
+                _context.Products.Update(product);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

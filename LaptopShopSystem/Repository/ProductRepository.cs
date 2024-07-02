@@ -139,6 +139,7 @@ namespace LaptopShopSystem.Repository
             existingProduct.Color = productDto.Color;
             existingProduct.Discount = productDto.Discount;
             existingProduct.Price = productDto.Price;
+            existingProduct.Rate = productDto.Rate;
             existingProduct.Remain = productDto.Remain;
             existingProduct.Total = productDto.Total;
             existingProduct.Type = productDto.Type;
