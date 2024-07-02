@@ -18,6 +18,8 @@ namespace LaptopShopSystem.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Wishlist> Wishlist { get; set; }
 
+        public DbSet<OrderItem> OrderItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>()

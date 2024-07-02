@@ -19,6 +19,7 @@ namespace LaptopShopSystem.Helper
             CreateMap<CartItem, CartItemDto>().ReverseMap();
             CreateMap<ProductCategory,ProductCategoryDto>().ReverseMap();
             CreateMap<Review,ReviewDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace LaptopShopSystem.Interfaces
         bool DeleteCartItem(CartItem cartItem);
         ICollection<CartItem> GetCartItems();
         ICollection<CartItem> GetCartItemsByCartId(int cartId);
+        bool DeleteCartItemOfACart(int cartId);
+        OrderItem ConvertCartItemToOrderItem(CartItem cartItem);
         bool Save();
     }
 }

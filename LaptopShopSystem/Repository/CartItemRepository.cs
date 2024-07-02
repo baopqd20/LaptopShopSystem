@@ -21,8 +21,6 @@ namespace LaptopShopSystem.Repository
                 Quantity = cartItemCreate.Quantity,
                 Cart = _context.Carts.Where(p => p.UserId == cartId).FirstOrDefault(),
                 Product = _context.Products.Where(p => p.Id == productId).FirstOrDefault(),
-                UnitPrice = _context.Products.Where(p => p.Id == productId).FirstOrDefault().Price,
-                Amount = cartItemCreate.Quantity * _context.Products.Where(p => p.Id == productId).FirstOrDefault().Price
             };
             _context.Add(cartItem);
             return Save();
@@ -32,6 +30,16 @@ namespace LaptopShopSystem.Repository
         {
             _context.Remove(cartItem);
             return Save();
+        }
+
+        public bool DeleteCartItemOfACart(int cartId)
+        {
+            var cartItems = _context.CartItems.Where(p => p.Cart.UserId == cartId);
+            foreach (var cartItem in cartItems) {
+                _context.Remove(cartItem);
+            }
+            return Save();
+
         }
 
         public ICollection<CartItem> GetCartItems()
@@ -60,5 +68,28 @@ namespace LaptopShopSystem.Repository
             _context.Update(cartItem);
             return Save();
         }
+
+        public OrderItem ConvertCartItemToOrderItem(CartItem cartItem)
+        {
+            if (cartItem == null)
+            {
+                throw new ArgumentNullException(nameof(cartItem));
+            }
+
+            var product = _context.Products.FirstOrDefault(p => p.Id == cartItem.ProductId);
+            if (product == null)
+            {
+                throw new InvalidOperationException($"Product with Id {cartItem.ProductId} does not exist.");
+            }
+
+            return new OrderItem
+            {
+                Quantity = cartItem.Quantity,
+                ProductId = cartItem.ProductId,
+                UnitPrice = product.Price,
+                Amount = product.Price * cartItem.Quantity
+            };
+        }
+
     }
 }
