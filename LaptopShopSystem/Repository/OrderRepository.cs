@@ -39,11 +39,21 @@ namespace LaptopShopSystem.Repository
                 PayMethod = orderCreate.PayMethod,
                 Total = orderCreate.ShipFee + ProductPrice,
                 ShipFee = orderCreate.ShipFee,
+                Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
+                ExpireTime = orderCreate.CreateTime.AddDays(3),
             };
            
             _context.Add(order);
             return Save();
+        }
+
+        public Order GetOrderByOrderId(int OrderId)
+        {
+            return _context.Orders.Where(p => p.Id == OrderId)
+                .Include(p => p.OrderItems)
+                .Include(p => p.User)
+                .FirstOrDefault();
         }
 
         public ICollection<Order> GetOrderByUserId(int UserId)
@@ -52,6 +62,7 @@ namespace LaptopShopSystem.Repository
                    .Include(o => o.OrderItems)
                    .Where(o => o.UserId == UserId)
                    .ToList();
+                       
         }
 
         public bool Save()

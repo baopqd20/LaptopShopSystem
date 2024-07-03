@@ -31,7 +31,7 @@ namespace LaptopShopSystem.Controllers
             return Ok("Create Success");
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("/user/{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult GetOrderByUserId(int userId)
@@ -43,5 +43,19 @@ namespace LaptopShopSystem.Controllers
             }
             return Ok(order);
         }
+
+        [HttpGet("/order/{orderId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult GetOrderByOrderId(int orderId)
+        {
+            var order = _orderRepository.GetOrderByOrderId(orderId);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
+
     }
 }

@@ -106,6 +106,9 @@ namespace LaptopShopSystem.Migrations
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime>("ExpireTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("PayMethod")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -115,6 +118,10 @@ namespace LaptopShopSystem.Migrations
 
                     b.Property<int>("ShipFee")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Total")
                         .HasColumnType("int");
@@ -170,15 +177,21 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PayTime")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("PayTime")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Status")
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Payments");
                 });
@@ -209,6 +222,9 @@ namespace LaptopShopSystem.Migrations
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("double");
 
                     b.Property<int>("Remain")
                         .HasColumnType("int");
@@ -434,7 +450,15 @@ namespace LaptopShopSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LaptopShopSystem.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>
