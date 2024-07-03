@@ -147,7 +147,7 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -439,7 +439,9 @@ namespace LaptopShopSystem.Migrations
                 {
                     b.HasOne("LaptopShopSystem.Models.Order", null)
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Payment", b =>

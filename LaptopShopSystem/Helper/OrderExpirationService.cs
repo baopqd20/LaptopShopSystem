@@ -25,6 +25,14 @@ namespace LaptopShopSystem.Helper
 
                     foreach (var order in expiredOrders)
                     {
+                        var orderItems = _context.OrderItems.Where(p => p.OrderId == order.Id).ToList();
+                        foreach (var orderitem in orderItems)
+                        {
+                            var product = _context.Products.Where(p => p.Id == orderitem.ProductId).FirstOrDefault();
+                            product.Remain = product.Remain + orderitem.Quantity;
+                            product.Total = product.Total - orderitem.Quantity;
+                            _context.Update(product);
+                        }
                         order.Status = "Expired";
                         _context.Orders.Update(order);
                     }

@@ -24,14 +24,23 @@ namespace LaptopShopSystem.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if (!_orderRepository.CreateOrder(userId, orderCreate))
+            int status = _orderRepository.CreateOrder(userId, orderCreate);
+            if (status == 0)
             {
-                return BadRequest("Something wrong while create order");
+                return BadRequest("Empty Cart");
+            }
+            if (status == 2)
+            {
+                return BadRequest("Not enough product quantity to order");
+            }
+            if (status != 1)
+            {
+                return BadRequest("Something wrong");
             }
             return Ok("Create Success");
         }
 
-        [HttpGet("/user/{userId}")]
+        [HttpGet("user/{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult GetOrderByUserId(int userId)
@@ -44,7 +53,7 @@ namespace LaptopShopSystem.Controllers
             return Ok(order);
         }
 
-        [HttpGet("/order/{orderId}")]
+        [HttpGet("order/{orderId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public IActionResult GetOrderByOrderId(int orderId)
@@ -57,5 +66,17 @@ namespace LaptopShopSystem.Controllers
             return Ok(order);
         }
 
+        [HttpPut("cancel/{orderId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult CancelOrder(int orderId)
+        {
+
+            if (!_orderRepository.CancelOrder(orderId))
+            {
+                return BadRequest("Something went wrong while cancel order");
+            }
+            return Ok("Cancel order success");
+        }
     }
 }

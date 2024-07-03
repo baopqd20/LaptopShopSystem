@@ -16,5 +16,6 @@ namespace LaptopShopSystem.Interfaces
         Task<Product?> UpdateAsync(int id, ProductDto ProductDto); 
         Task<Product?> DeleteAsync(int id);
         Task<bool> ProductExists(int id);
+
     }
 }
