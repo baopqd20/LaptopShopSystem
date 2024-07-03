@@ -17,7 +17,7 @@ namespace LaptopShopSystem.Data
         public DbSet<ProductDetails> ProductDetails { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Wishlist> Wishlist { get; set; }
-
+        public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace LaptopShopSystem.Data
                 .HasForeignKey(p => p.CategoryId);
 
             modelBuilder.Entity<Wishlist>()
-                .HasKey(k => new {k.ProductId, k.UserId});
+                .HasKey(k => new { k.ProductId, k.UserId });
             modelBuilder.Entity<Wishlist>()
                 .HasOne(p => p.User)
                 .WithMany(pc => pc.Wishlists)
