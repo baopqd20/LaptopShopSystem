@@ -10,5 +10,6 @@ namespace LaptopShopSystem.Interfaces
         Brand GetBrandById(int id);
         bool BrandExists(int id);
         bool Save();
+        Task<List<Brand>> GetBrands();
     }
 }

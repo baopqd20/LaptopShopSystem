@@ -1,10 +1,11 @@
 ﻿using LaptopShopSystem.Data;
 using LaptopShopSystem.Interfaces;
 using LaptopShopSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaptopShopSystem.Repository
 {
-    public class BrandRepository:IBrandRepository
+    public class BrandRepository : IBrandRepository
     {
         private readonly DataContext _context;
 
@@ -44,11 +45,16 @@ namespace LaptopShopSystem.Repository
         public bool BrandExists(int id)
         {
             var brand = _context.Brands.Where(p => p.Id == id).FirstOrDefault();
-            if(brand == null)
+            if (brand == null)
             {
                 return false;
             }
             return true;
+        }
+
+        public async Task<List<Brand>> GetBrands()
+        {
+            return await _context.Brands.ToListAsync();
         }
     }
 }

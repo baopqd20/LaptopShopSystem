@@ -9,7 +9,7 @@ namespace LaptopShopSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandController:Controller
+    public class BrandController : Controller
     {
         private readonly IBrandRepository _brandRepository;
         private readonly IMapper _mapper;
@@ -48,7 +48,7 @@ namespace LaptopShopSystem.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [Authorize]
-        public IActionResult UpdateBrand(int brandId,[FromBody] BrandDto brandUpdate)
+        public IActionResult UpdateBrand(int brandId, [FromBody] BrandDto brandUpdate)
         {
             var isAdmin = User.IsInRole("admin");
             if (!isAdmin)
@@ -96,6 +96,17 @@ namespace LaptopShopSystem.Controllers
             }
             return Ok("Delete Success");
 
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllBrand()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var brands = await _brandRepository.GetBrands();
+            var brandDtos = _mapper.Map<List<BrandDto>>(brands);
+            return Ok(brandDtos);
         }
     }
 }

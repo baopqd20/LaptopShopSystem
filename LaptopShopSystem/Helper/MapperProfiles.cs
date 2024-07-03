@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using LaptopShopSystem.Dto;
 using LaptopShopSystem.Dto.Product;
-using LaptopShopSystem.Mapper;
+using LaptopShopSystem.Dto.Review;
 using LaptopShopSystem.Models;
 
 namespace LaptopShopSystem.Helper
@@ -16,15 +16,11 @@ namespace LaptopShopSystem.Helper
             CreateMap<User, UserAdminDto>().ReverseMap();
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
-
             CreateMap<CartItem, CartItemDto>().ReverseMap();
-
-
             CreateMap<ProductCategory,ProductCategoryDto>().ReverseMap();
             CreateMap<Review,ReviewDto>().ReverseMap();
+            CreateMap<Review,ReviewUpdateDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
-
-
         }
     }
 }
