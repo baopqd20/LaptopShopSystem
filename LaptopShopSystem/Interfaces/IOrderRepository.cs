@@ -7,6 +7,8 @@ namespace LaptopShopSystem.Interfaces
     {
         bool CreateOrder (int userId, OrderDto order);
         ICollection<Order> GetOrderByUserId (int UserId);
+        Order GetOrderByOrderId(int OrderId);
+
         bool Save();
         
     }
