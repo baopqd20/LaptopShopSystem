@@ -21,7 +21,9 @@ namespace LaptopShopSystem.Repository
 
             if (voucher.StartDate.HasValue && voucher.EndDate.HasValue)
             {
-                var currentDate = DateTime.UtcNow;
+                var currentDate = DateTime.Now;
+                Console.WriteLine(currentDate);
+                Console.WriteLine(voucher.StartDate.Value+"========="+voucher.EndDate.Value);
                 if (currentDate >= voucher.StartDate.Value && currentDate <= voucher.EndDate.Value)
                 {
                     voucher.Status = "Active";
@@ -33,7 +35,7 @@ namespace LaptopShopSystem.Repository
             }
             else
             {
-                voucher.Status = "Inactive";
+                voucher.Status = "Onactive";
             }
 
             await _context.Vouchers.AddAsync(voucher);

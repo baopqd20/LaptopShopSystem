@@ -40,18 +40,19 @@ namespace LaptopShopSystem.Repository
                 return null;
             }
             if(productModel.Details !=null){
-                _context.ProductDetails.Remove(productModel.Details);
+                // _context.ProductDetails.Remove(productModel.Details);
+                productModel.Remain =0;
             }
-            //Remove reviews
-            var reviews = _context.Reviews.Where(r=> r.ProductId == id);
-            _context.Reviews.RemoveRange(reviews);
+            // //Remove reviews
+            // var reviews = _context.Reviews.Where(r=> r.ProductId == id);
+            // _context.Reviews.RemoveRange(reviews);
 
-            _context.ProductCategories.RemoveRange(productModel.ProductCategories);
-            // Remove from Wishlists
-            var wishlists = _context.Wishlist.Where(w => w.ProductId == id);
-            _context.Wishlist.RemoveRange(wishlists);
-            // Remove producgtModel
-            _context.Products.Remove(productModel);
+            // _context.ProductCategories.RemoveRange(productModel.ProductCategories);
+            // // Remove from Wishlists
+            // var wishlists = _context.Wishlist.Where(w => w.ProductId == id);
+            // _context.Wishlist.RemoveRange(wishlists);
+            // // Remove producgtModel
+            // _context.Products.Remove(productModel);
 
             await _context.SaveChangesAsync();
             return productModel;
