@@ -30,5 +30,18 @@ namespace LaptopShopSystem.Controllers
             }
             return Ok("Create Success");
         }
+
+        [HttpGet("{userId}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public IActionResult GetOrderByUserId(int userId)
+        {
+            var order = _orderRepository.GetOrderByUserId(userId);
+            if(order == null)
+            {
+                return NotFound();
+            }
+            return Ok(order);
+        }
     }
 }

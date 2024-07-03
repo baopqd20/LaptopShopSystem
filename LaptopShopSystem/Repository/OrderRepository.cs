@@ -2,6 +2,7 @@
 using LaptopShopSystem.Dto;
 using LaptopShopSystem.Interfaces;
 using LaptopShopSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaptopShopSystem.Repository
 {
@@ -43,6 +44,14 @@ namespace LaptopShopSystem.Repository
            
             _context.Add(order);
             return Save();
+        }
+
+        public ICollection<Order> GetOrderByUserId(int UserId)
+        {
+            return _context.Orders
+                   .Include(o => o.OrderItems)
+                   .Where(o => o.UserId == UserId)
+                   .ToList();
         }
 
         public bool Save()

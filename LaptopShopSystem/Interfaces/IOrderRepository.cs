@@ -6,6 +6,7 @@ namespace LaptopShopSystem.Interfaces
     public interface IOrderRepository
     {
         bool CreateOrder (int userId, OrderDto order);
+        ICollection<Order> GetOrderByUserId (int UserId);
         bool Save();
         
     }

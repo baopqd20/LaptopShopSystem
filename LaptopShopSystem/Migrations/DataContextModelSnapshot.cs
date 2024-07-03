@@ -159,6 +159,30 @@ namespace LaptopShopSystem.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("LaptopShopSystem.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PayTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -406,6 +430,17 @@ namespace LaptopShopSystem.Migrations
                     b.HasOne("LaptopShopSystem.Models.Order", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.Payment", b =>
+                {
+                    b.HasOne("LaptopShopSystem.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Product", b =>

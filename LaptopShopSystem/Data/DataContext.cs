@@ -19,7 +19,7 @@ namespace LaptopShopSystem.Data
         public DbSet<Wishlist> Wishlist { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
-
+        public DbSet<Payment> Payments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>()
