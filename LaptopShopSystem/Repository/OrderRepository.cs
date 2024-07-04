@@ -69,13 +69,15 @@ namespace LaptopShopSystem.Repository
             double discount = 0;
             if (voucher != null)
             {
-                if(voucher.Status == "Inactive") return 3;
-                discount = (double)voucher.Discount*(double)ProductPrice/100;
+                if (voucher.Status == "Inactive") return 3;
+                discount = (double)voucher.Discount * (double)ProductPrice / 100;
                 Console.WriteLine(discount);
                 voucher.Remain--;
                 voucher.Total++;
             }
 
+            // Set time expire
+            var day = orderCreate.PayMethod == "Online" ? 1 : 3;
 
             var order = new Order
             {
@@ -87,7 +89,7 @@ namespace LaptopShopSystem.Repository
                 ShipFee = orderCreate.ShipFee,
                 Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
-                ExpireTime = orderCreate.CreateTime.AddDays(3),
+                ExpireTime = orderCreate.CreateTime.AddDays(day),
                 VoucherId = voucher.Id,
                 Voucher = voucher,
             };
