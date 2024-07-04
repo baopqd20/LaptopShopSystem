@@ -20,6 +20,7 @@ namespace LaptopShopSystem.Data
         public DbSet<Voucher> Vouchers { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Shipment> Shipments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategory>()

@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddHttpClient();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -29,6 +29,7 @@ builder.Services.AddScoped<IReviewRepository,ReviewRepository>();
 builder.Services.AddScoped<IVoucherRepository,VoucherRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddDbContext<DataContext>(options =>

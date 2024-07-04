@@ -30,6 +30,11 @@ namespace LaptopShopSystem.Repository
             _context.Add(payment);
             order.Status = "Paid";
             _context.Update(order);
+            var shipment = _context.Shipments.Where(p => p.OrderId == orderId).FirstOrDefault();
+            var duration = int.Parse(shipment.IntentTime);
+            shipment.Status = "Being transport";
+            shipment.IntentTime = (DateTime.Now.AddDays(1).AddSeconds(duration).ToString());
+            _context.Update(shipment);
             return Save();
         }
 

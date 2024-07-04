@@ -129,7 +129,7 @@ namespace LaptopShopSystem.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VoucherId")
+                    b.Property<int?>("VoucherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -355,6 +355,43 @@ namespace LaptopShopSystem.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("LaptopShopSystem.Models.Shipment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("End")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("IntentTime")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShipFee")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Start")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Shipments");
+                });
+
             modelBuilder.Entity("LaptopShopSystem.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -482,9 +519,7 @@ namespace LaptopShopSystem.Migrations
 
                     b.HasOne("LaptopShopSystem.Models.Voucher", "Voucher")
                         .WithMany()
-                        .HasForeignKey("VoucherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VoucherId");
 
                     b.Navigation("User");
 
@@ -575,6 +610,17 @@ namespace LaptopShopSystem.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LaptopShopSystem.Models.Shipment", b =>
+                {
+                    b.HasOne("LaptopShopSystem.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("LaptopShopSystem.Models.Wishlist", b =>
