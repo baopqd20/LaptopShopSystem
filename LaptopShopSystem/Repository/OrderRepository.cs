@@ -69,12 +69,19 @@ namespace LaptopShopSystem.Repository
             double discount = 0;
             if (voucher != null)
             {
-                if(voucher.Status == "Inactive") return 3;
-                discount = (double)voucher.Discount*(double)ProductPrice/100;
+                if (voucher.Status == "Inactive") return 3;
+                discount = (double)voucher.Discount * (double)ProductPrice / 100;
                 Console.WriteLine(discount);
                 voucher.Remain--;
                 voucher.Total++;
             }
+<<<<<<< HEAD
+=======
+
+            // Set time expire
+            var day = orderCreate.PayMethod == "Online" ? 1 : 3;
+
+>>>>>>> 0cfd8c5b6fd5e11d77444827fbb4861e8d2d901b
             var order = new Order
             {
                 UserId = userId,
@@ -85,7 +92,15 @@ namespace LaptopShopSystem.Repository
                 ShipFee = orderCreate.ShipFee,
                 Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
+<<<<<<< HEAD
                 ExpireTime = orderCreate.CreateTime.AddDays(3),
+=======
+                ExpireTime = orderCreate.CreateTime.AddDays(day),
+                VoucherId = voucher.Id,
+                Voucher = voucher,
+            };
+            Console.WriteLine(order.Total);
+>>>>>>> 0cfd8c5b6fd5e11d77444827fbb4861e8d2d901b
 
             };
            
