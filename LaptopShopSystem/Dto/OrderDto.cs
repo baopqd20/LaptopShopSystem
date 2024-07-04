@@ -7,6 +7,7 @@
         public int ShipFee = 20000;
 
         public string Status = "Pending";
+        public int VoucherId { get; set; }
 
         public DateTime CreateTime = DateTime.Now;
     }

@@ -37,6 +37,7 @@ builder.Services.AddDbContext<DataContext>(options =>
         new MySqlServerVersion(new Version(8, 0, 32)) // Specify the version of your MySQL server
     ));
 builder.Services.AddHostedService<OrderExpirationService>();
+builder.Services.AddHostedService<VoucherExpirationService>();
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 builder.Services.AddAuthentication(options =>

@@ -4,7 +4,7 @@ namespace LaptopShopSystem.Models
     public class Voucher
     {
        public int Id { get; set; }
-        public float Discount { get; set; }
+        public int Discount { get; set; }
         public required string Status { get; set; }
         public required string Code { get; set; } 
         public DateTime? EndDate { get; set; }
