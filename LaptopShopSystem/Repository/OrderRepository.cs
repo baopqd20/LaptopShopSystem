@@ -64,21 +64,40 @@ namespace LaptopShopSystem.Repository
             {
                 ProductPrice = ProductPrice + orderItem.Amount;
             }
-            var order = new Order
+            if(orderCreate.PayMethod == "Offline")
             {
-                UserId = userId,
-                OrderItems = OrderItems,
-                ProductPrice = ProductPrice,  
-                PayMethod = orderCreate.PayMethod,
-                Total = orderCreate.ShipFee + ProductPrice,
-                ShipFee = orderCreate.ShipFee,
-                Status = orderCreate.Status,
-                CreateTime = orderCreate.CreateTime,
-                ExpireTime = orderCreate.CreateTime.AddDays(3),
-
-            };
+                var order = new Order
+                {
+                    UserId = userId,
+                    OrderItems = OrderItems,
+                    ProductPrice = ProductPrice,
+                    PayMethod = orderCreate.PayMethod,
+                    Total = orderCreate.ShipFee + ProductPrice,
+                    ShipFee = orderCreate.ShipFee,
+                    Status = orderCreate.Status,
+                    CreateTime = orderCreate.CreateTime,
+                    ExpireTime = orderCreate.CreateTime.AddDays(3),
+                };
+                _context.Add(order);
+            }
+            if(orderCreate.PayMethod == "Online")
+            {
+                var order = new Order
+                {
+                    UserId = userId,
+                    OrderItems = OrderItems,
+                    ProductPrice = ProductPrice,
+                    PayMethod = orderCreate.PayMethod,
+                    Total = orderCreate.ShipFee + ProductPrice,
+                    ShipFee = orderCreate.ShipFee,
+                    Status = orderCreate.Status,
+                    CreateTime = orderCreate.CreateTime,
+                    ExpireTime = orderCreate.CreateTime.AddDays(1),
+                    
+                };
            
-            _context.Add(order);
+                _context.Add(order);
+            }
             Save();
             return 1;
         }
