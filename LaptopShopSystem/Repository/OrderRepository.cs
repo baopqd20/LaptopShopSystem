@@ -75,35 +75,26 @@ namespace LaptopShopSystem.Repository
                 voucher.Remain--;
                 voucher.Total++;
             }
-<<<<<<< HEAD
-=======
 
             // Set time expire
             var day = orderCreate.PayMethod == "Online" ? 1 : 3;
 
->>>>>>> 0cfd8c5b6fd5e11d77444827fbb4861e8d2d901b
             var order = new Order
             {
                 UserId = userId,
                 OrderItems = OrderItems,
-                ProductPrice = ProductPrice,  
+                ProductPrice = ProductPrice,
                 PayMethod = orderCreate.PayMethod,
-                Total = orderCreate.ShipFee + ProductPrice,
+                Total = orderCreate.ShipFee + ProductPrice - (int)discount,
                 ShipFee = orderCreate.ShipFee,
                 Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
-<<<<<<< HEAD
-                ExpireTime = orderCreate.CreateTime.AddDays(3),
-=======
                 ExpireTime = orderCreate.CreateTime.AddDays(day),
                 VoucherId = voucher.Id,
                 Voucher = voucher,
             };
             Console.WriteLine(order.Total);
->>>>>>> 0cfd8c5b6fd5e11d77444827fbb4861e8d2d901b
 
-            };
-           
             _context.Add(order);
             Save();
             return 1;
