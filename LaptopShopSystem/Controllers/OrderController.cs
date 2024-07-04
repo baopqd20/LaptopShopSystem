@@ -1,5 +1,6 @@
 ﻿using LaptopShopSystem.Dto;
 using LaptopShopSystem.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaptopShopSystem.Controllers
@@ -33,10 +34,15 @@ namespace LaptopShopSystem.Controllers
             {
                 return BadRequest("Not enough product quantity to order");
             }
+            if (status == 3)
+            {
+                return BadRequest("Voucher is invalid or has expired!");
+            }
             if (status != 1)
             {
                 return BadRequest("Something wrong");
             }
+
             return Ok("Create Success");
         }
 
@@ -46,7 +52,7 @@ namespace LaptopShopSystem.Controllers
         public IActionResult GetOrderByUserId(int userId)
         {
             var order = _orderRepository.GetOrderByUserId(userId);
-            if(order == null)
+            if (order == null)
             {
                 return NotFound();
             }

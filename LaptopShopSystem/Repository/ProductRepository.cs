@@ -39,9 +39,10 @@ namespace LaptopShopSystem.Repository
             {
                 return null;
             }
-            if(productModel.Details !=null){
+            if (productModel.Details != null)
+            {
                 // _context.ProductDetails.Remove(productModel.Details);
-                productModel.Remain =0;
+                productModel.Remain = 0;
             }
             // //Remove reviews
             // var reviews = _context.Reviews.Where(r=> r.ProductId == id);

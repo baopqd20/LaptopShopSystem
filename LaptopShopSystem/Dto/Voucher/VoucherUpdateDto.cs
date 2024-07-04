@@ -8,7 +8,7 @@ namespace LaptopShopSystem.Dto.Voucher
     public class VoucherUpdateDto
     {
     
-        public float Discount { get; set; }
+        public int Discount { get; set; }
         public required string Status { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }

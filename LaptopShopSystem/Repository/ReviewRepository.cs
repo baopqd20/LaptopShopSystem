@@ -76,13 +76,13 @@ namespace LaptopShopSystem.Repository
 
             if (product != null)
             {
-                if (reviews.Count!=0)
+                if (reviews.Count != 0)
                 {
                     product.Rate = reviews.Average(r => r.Rating);
                 }
                 else
                 {
-                    product.Rate = 0; 
+                    product.Rate = 0;
                 }
                 // Update product in database
                 _context.Products.Update(product);

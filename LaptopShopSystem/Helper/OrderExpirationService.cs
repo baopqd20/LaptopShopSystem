@@ -36,7 +36,6 @@ namespace LaptopShopSystem.Helper
                         order.Status = "Expired";
                         _context.Orders.Update(order);
                     }
-
                     await _context.SaveChangesAsync();
                 }
 

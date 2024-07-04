@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LaptopShopSystem.Repository
 {
-    public class OrderRepository:IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly DataContext _context;
         private readonly ICartItemRepository _cartItemRepository;
@@ -21,7 +21,7 @@ namespace LaptopShopSystem.Repository
         {
             var order = _context.Orders.Where(p => p.Id == orderId).FirstOrDefault();
 
-            if(order.Status != "Pending")
+            if (order.Status != "Pending")
             {
                 return false;
             }
@@ -46,38 +46,53 @@ namespace LaptopShopSystem.Repository
             {
                 return 0;
             }
-            foreach(var cartItem in cartItems)
+            foreach (var cartItem in cartItems)
             {
                 var product = _context.Products.Where(p => p.Id == cartItem.ProductId).FirstOrDefault();
                 if (product.Remain < cartItem.Quantity)
                 {
                     return 2;
                 }
-                product.Remain = product.Remain - cartItem.Quantity;
-                product.Total = product.Total + cartItem.Quantity;
+                product.Remain -= cartItem.Quantity;
+                product.Total += cartItem.Quantity;
                 _context.Update(product);
                 OrderItems.Add(_cartItemRepository.ConvertCartItemToOrderItem(cartItem));
                 _cartItemRepository.DeleteCartItem(cartItem);
             }
             var ProductPrice = 0;
-            foreach(var orderItem in OrderItems)
+            foreach (var orderItem in OrderItems)
             {
-                ProductPrice = ProductPrice + orderItem.Amount;
+                ProductPrice += orderItem.Amount;
             }
+
+            var voucher = _context.Vouchers.Where(v => v.Id == orderCreate.VoucherId).FirstOrDefault();
+            double discount = 0;
+            if (voucher != null)
+            {
+                if(voucher.Status == "Inactive") return 3;
+                discount = (double)voucher.Discount*(double)ProductPrice/100;
+                Console.WriteLine(discount);
+                voucher.Remain--;
+                voucher.Total++;
+            }
+
+
             var order = new Order
             {
                 UserId = userId,
                 OrderItems = OrderItems,
-                ProductPrice = ProductPrice,  
+                ProductPrice = ProductPrice,
                 PayMethod = orderCreate.PayMethod,
-                Total = orderCreate.ShipFee + ProductPrice,
+                Total = orderCreate.ShipFee + ProductPrice - (int)discount,
                 ShipFee = orderCreate.ShipFee,
                 Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
                 ExpireTime = orderCreate.CreateTime.AddDays(3),
-
+                VoucherId = voucher.Id,
+                Voucher = voucher,
             };
-           
+            Console.WriteLine(order.Total);
+
             _context.Add(order);
             Save();
             return 1;
@@ -97,7 +112,7 @@ namespace LaptopShopSystem.Repository
                    .Include(o => o.OrderItems)
                    .Where(o => o.UserId == UserId)
                    .ToList();
-                       
+
         }
 
         public bool Save()
