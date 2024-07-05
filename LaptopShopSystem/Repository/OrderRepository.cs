@@ -65,7 +65,9 @@ namespace LaptopShopSystem.Repository
                 ProductPrice += orderItem.Amount;
             }
 
-            var voucher = _context.Vouchers.Where(v => v.Id == orderCreate.VoucherId).FirstOrDefault();
+            var voucher = orderCreate.VoucherId != null
+                ? _context.Vouchers.FirstOrDefault(v => v.Id == orderCreate.VoucherId)
+                : null;
             double discount = 0;
             if (voucher != null)
             {
@@ -75,6 +77,7 @@ namespace LaptopShopSystem.Repository
                 voucher.Remain--;
                 voucher.Total++;
             }
+
 
             // Set time expire
             var day = orderCreate.PayMethod == "Online" ? 1 : 3;
@@ -90,7 +93,7 @@ namespace LaptopShopSystem.Repository
                 Status = orderCreate.Status,
                 CreateTime = orderCreate.CreateTime,
                 ExpireTime = orderCreate.CreateTime.AddDays(day),
-                VoucherId = voucher.Id,
+                VoucherId = voucher?.Id, 
                 Voucher = voucher,
             };
             Console.WriteLine(order.Total);
