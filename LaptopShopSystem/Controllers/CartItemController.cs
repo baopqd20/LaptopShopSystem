@@ -36,6 +36,10 @@ namespace LaptopShopSystem.Controllers
                 return BadRequest(ModelState); 
             }
             var CartItem = _cartItemRepository.CreateCartItem(productId, cartId, cartItemCreate);
+            if (cartItemCreate.Quantity == 0)
+            {
+                return BadRequest("Invalid Quantity");
+            }
             if (!CartItem)
             {
                 return BadRequest("Something wrong while adding product to cart");

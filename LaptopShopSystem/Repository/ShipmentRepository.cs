@@ -45,7 +45,7 @@ namespace LaptopShopSystem.Repository
         public async Task<(double distance, double duration)> GetDistanceAsync(double originLat, double originLon, double destLat, double destLon, string apiKey)
         {
             string url = $"https://api.openrouteservice.org/v2/directions/driving-car?api_key={apiKey}&start={originLon},{originLat}&end={destLon},{destLat}";
-
+            Console.WriteLine(url);
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();
 
