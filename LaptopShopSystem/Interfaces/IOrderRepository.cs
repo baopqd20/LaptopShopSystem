@@ -5,7 +5,7 @@ namespace LaptopShopSystem.Interfaces
 {
     public interface IOrderRepository
     {
-        int CreateOrder (int userId, OrderDto order);
+        Task<int> CreateOrder (int userId, OrderDto order);
         ICollection<Order> GetOrderByUserId (int UserId);
         Order GetOrderByOrderId(int OrderId);
         bool CancelOrder (int OrderId);

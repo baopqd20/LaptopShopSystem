@@ -19,13 +19,13 @@ namespace LaptopShopSystem.Controllers
         [HttpPost]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult CreateOrder([FromQuery] int userId, [FromBody] OrderDto orderCreate)
+        public async Task<IActionResult> CreateOrder([FromQuery] int userId, [FromBody] OrderDto orderCreate)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            int status = _orderRepository.CreateOrder(userId, orderCreate);
+            var status = await _orderRepository.CreateOrder(userId, orderCreate);
             if (status == 0)
             {
                 return BadRequest("Empty Cart");

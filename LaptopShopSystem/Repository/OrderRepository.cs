@@ -10,11 +10,13 @@ namespace LaptopShopSystem.Repository
     {
         private readonly DataContext _context;
         private readonly ICartItemRepository _cartItemRepository;
+        private readonly IShipmentRepository _shipmentRepository;
 
-        public OrderRepository(DataContext context, ICartItemRepository cartItemRepository)
+        public OrderRepository(DataContext context, ICartItemRepository cartItemRepository, IShipmentRepository shipmentRepository)
         {
             _context = context;
             _cartItemRepository = cartItemRepository;
+            _shipmentRepository = shipmentRepository;
         }
 
         public bool CancelOrder(int orderId)
@@ -38,7 +40,7 @@ namespace LaptopShopSystem.Repository
             return Save();
         }
 
-        public int CreateOrder(int userId, OrderDto orderCreate)
+        public async Task<int> CreateOrder(int userId, OrderDto orderCreate)
         {
             ICollection<OrderItem> OrderItems = new List<OrderItem>();
             var cartItems = _context.CartItems.Where(p => p.Cart.UserId == userId).ToList();
@@ -57,6 +59,7 @@ namespace LaptopShopSystem.Repository
                 product.Total += cartItem.Quantity;
                 _context.Update(product);
                 OrderItems.Add(_cartItemRepository.ConvertCartItemToOrderItem(cartItem));
+                
                 _cartItemRepository.DeleteCartItem(cartItem);
             }
             var ProductPrice = 0;
@@ -77,6 +80,7 @@ namespace LaptopShopSystem.Repository
                 voucher.Remain--;
                 voucher.Total++;
             }
+    
 
 
             // Set time expire
@@ -99,6 +103,10 @@ namespace LaptopShopSystem.Repository
             Console.WriteLine(order.Total);
 
             _context.Add(order);
+            Save();
+            var shipment = await _shipmentRepository.CreateShipment(order);
+            order.ShipFee = shipment.ShipFee;
+            _context.Update(order);
             Save();
             return 1;
         }
