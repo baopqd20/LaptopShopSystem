@@ -46,6 +46,7 @@ namespace LaptopShopSystem.Repository
         public async Task<(double distance, double duration)> GetDistanceAsync(double originLat, double originLon, double destLat, double destLon, string apiKey)
         {
 
+
             // Định dạng các giá trị tọa độ với dấu thập phân là dấu chấm
             string formattedOriginLat = originLat.ToString(CultureInfo.InvariantCulture);
             string formattedOriginLon = originLon.ToString(CultureInfo.InvariantCulture);
@@ -53,6 +54,7 @@ namespace LaptopShopSystem.Repository
             string formattedDestLon = destLon.ToString(CultureInfo.InvariantCulture);
 
             string url = $"https://api.openrouteservice.org/v2/directions/driving-car?api_key={apiKey}&start={formattedOriginLon},{formattedOriginLat}&end={formattedDestLon},{formattedDestLat}";
+
             Console.WriteLine(url);
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             response.EnsureSuccessStatusCode();

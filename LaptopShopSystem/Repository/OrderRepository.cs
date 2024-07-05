@@ -59,8 +59,10 @@ namespace LaptopShopSystem.Repository
                 product.Total += cartItem.Quantity;
                 _context.Update(product);
                 OrderItems.Add(_cartItemRepository.ConvertCartItemToOrderItem(cartItem));
-                
-                _cartItemRepository.DeleteCartItem(cartItem);
+                if (OrderItems.Count > 0)
+                {
+                    _cartItemRepository.DeleteCartItem(cartItem);
+                }
             }
             var ProductPrice = 0;
             foreach (var orderItem in OrderItems)
