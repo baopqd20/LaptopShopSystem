@@ -77,7 +77,7 @@ namespace LaptopShopSystem.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [Authorize]
-        public IActionResult DeletaBrand(int brandId)
+        public IActionResult DeleteBrand(int brandId)
         {
             var isAdmin = User.IsInRole("admin");
             if (!isAdmin)
@@ -90,7 +90,7 @@ namespace LaptopShopSystem.Controllers
             }
 
             var userDb = _brandRepository.GetBrandById(brandId);
-            if (!_brandRepository.UpdateBrand(userDb))
+            if (!_brandRepository.DeleteBrand(userDb))
             {
                 return BadRequest("Something went wrong while update brand");
             }
@@ -105,8 +105,8 @@ namespace LaptopShopSystem.Controllers
                 return BadRequest(ModelState);
             }
             var brands = await _brandRepository.GetBrands();
-            var brandDtos = _mapper.Map<List<BrandDto>>(brands);
-            return Ok(brandDtos);
+            
+            return Ok(brands);
         }
     }
 }

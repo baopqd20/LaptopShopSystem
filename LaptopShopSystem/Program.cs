@@ -66,7 +66,7 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole("admin");
     });
 });
-builder.Services.AddCors(options =>
+/*builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowSpecificOrigin",
             builder =>
@@ -75,7 +75,16 @@ builder.Services.AddCors(options =>
                        .AllowAnyHeader()
                        .AllowAnyMethod();
             });
-    });
+    });*/
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("http://localhost:3000") // Chỉ định các nguồn cụ thể được phép
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 var app = builder.Build();
 

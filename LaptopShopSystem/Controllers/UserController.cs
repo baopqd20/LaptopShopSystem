@@ -120,7 +120,7 @@ namespace LaptopShopSystem.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<UserRegisterDto>))]
         [ProducesResponseType(400)]
         [Authorize("RequireAdministratorRole")]
         public IActionResult GetUsers()

@@ -102,7 +102,7 @@ namespace LaptopShopSystem.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetCategories()
         {
-            var categories =_mapper.Map<List<CategoryDto>>( _categoryRepository.GetCategories());
+            var categories = _categoryRepository.GetCategories();
 
             if (!ModelState.IsValid)
             {
