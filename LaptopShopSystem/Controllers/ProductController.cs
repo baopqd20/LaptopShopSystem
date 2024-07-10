@@ -114,5 +114,32 @@ namespace LaptopShopSystem.Controllers
 
             return Ok("Xóa thành công!");
         }
+        [HttpGet("best-selling")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetTopProductsByTotal()
+        {
+            var products = await _context.Products
+                .OrderByDescending(p => p.Total)
+                .Take(6)
+                .ToListAsync();
+
+            var productDtos = products.Select(p => p.ToProdResponse());
+            return Ok(productDtos);
+        }
+
+        [HttpGet("new")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> GetNewestProducts()
+        {
+            var products = await _context.Products
+                .OrderByDescending(p => p.Created)
+                .Take(6)
+                .ToListAsync();
+
+            var productDtos = products.Select(p => p.ToProdResponse());
+            return Ok(productDtos);
+        }
     }
 }

@@ -37,18 +37,18 @@ namespace LaptopShopSystem.Controllers
                 return BadRequest(ModelState);
             }
             if (_userRepository.CheckEmail(userMap.Email)) {
-                ModelState.AddModelError("", "Email already exists!");
+                ModelState.AddModelError("msg", "Email already exists!");
                 return BadRequest(ModelState);
             }
             if (userCreate.Password != userCreate.ConfirmPassword)
             {
-                ModelState.AddModelError("", "Password and Confirm Password must be same");
+                ModelState.AddModelError("msg", "Password and Confirm Password must be same");
                 return BadRequest(ModelState);
             }
 
             if (!_userRepository.CreateUser(userMap))
             {
-                ModelState.AddModelError("", "Something wrong while registing");
+                ModelState.AddModelError("msg", "Something wrong while registing");
                 return BadRequest(ModelState);
             }
             var cartCreate = new Cart()
@@ -57,7 +57,7 @@ namespace LaptopShopSystem.Controllers
             };
             if (!_cartRepository.CreateCart(cartCreate))
             {
-                ModelState.AddModelError("", "Something wrong while creating cart");
+                ModelState.AddModelError("msg", "Something wrong while creating cart");
                 return BadRequest(ModelState);
             }
 
@@ -105,14 +105,14 @@ namespace LaptopShopSystem.Controllers
         {
             if (!_userRepository.CheckEmail(userLogin.Email))
             {
-                ModelState.AddModelError("", "Email not exists");
+                ModelState.AddModelError("msg", "Email not exists");
                 return BadRequest(ModelState);
             }
 
             var user = _userRepository.GetUserByEmail(userLogin.Email);
             if (userLogin.Password != user.Password)
             {
-                ModelState.AddModelError("", "Password is incorrect");
+                ModelState.AddModelError("msg", "Password is incorrect");
                 return BadRequest(ModelState);
             }
             var tokenString = _jwtRepository.GenerateJwtToken(userLogin.Email, _userRepository.GetRole(user), user.Id);
