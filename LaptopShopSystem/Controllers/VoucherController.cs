@@ -28,8 +28,8 @@ namespace LaptopShopSystem.Controllers
                 return BadRequest(ModelState);
             }
             var vouchers = await _voucherRepo.GetAllAsync(queryObjectForVoucher);
-            var voucherDtos = _mapper.Map<List<VoucherDto>>(vouchers);
-            return Ok(voucherDtos);
+           
+            return Ok(vouchers);
         }
 
 
