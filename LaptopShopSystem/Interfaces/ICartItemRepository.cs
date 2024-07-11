@@ -6,7 +6,7 @@ namespace LaptopShopSystem.Interfaces
     public interface ICartItemRepository
     {
         bool CreateCartItem(int productId, int cartId, CartItemDto cartItem);
-        bool UpdateCartItem(CartItem cartItem);
+        Task<CartItem?> UpdateCartItem(int cartId,CartItem cartItem);
         bool DeleteCartItem(CartItem cartItem);
         ICollection<CartItem> GetCartItems();
         ICollection<CartItem> GetCartItemsByCartId(int cartId);

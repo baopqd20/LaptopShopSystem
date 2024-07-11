@@ -51,10 +51,10 @@ namespace LaptopShopSystem.Repository
         {
             return _context.CartItems
             .Include(ci => ci.Cart) // Nạp thông tin của Cart
-            .Include(ci => ci.Product) // Nạp thông tin của Product
+            .Include(ci => ci.Product).ThenInclude(pd => pd.Details) // Nạp thông tin của Product
             .Where(ci => ci.Cart.UserId == cartId)
             .ToList();
-            
+
         }
 
         public bool Save()
@@ -63,10 +63,21 @@ namespace LaptopShopSystem.Repository
             return saved > 0 ? true : false;
         }
 
-        public bool UpdateCartItem(CartItem cartItem)
+        public async Task<CartItem?> UpdateCartItem(int cartId, CartItem cartItem)
         {
-            _context.Update(cartItem);
-            return Save();
+            var cartItemExist = await _context.CartItems.FirstOrDefaultAsync(ci => ci.CartId == cartId&& ci.ProductId == cartItem.ProductId);
+            Console.WriteLine(cartItemExist);
+            if (cartItemExist == null)
+            {
+                return null;
+            }
+
+            cartItemExist.ProductId = cartItem.ProductId;
+            cartItemExist.Quantity = cartItem.Quantity;
+            Console.WriteLine(cartItem);
+            await _context.SaveChangesAsync();
+      
+            return cartItemExist;
         }
 
         public OrderItem ConvertCartItemToOrderItem(CartItem cartItem)

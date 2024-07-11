@@ -18,6 +18,7 @@ namespace LaptopShopSystem.Helper
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<CartItem, CartItemDto>().ReverseMap();
+            CreateMap<CartItem,CartItemUpdateDto>().ReverseMap();
             CreateMap<ProductCategory, ProductCategoryDto>().ReverseMap();
             CreateMap<Review, ReviewDto>().ReverseMap();
             CreateMap<Review, ReviewUpdateDto>().ReverseMap();
