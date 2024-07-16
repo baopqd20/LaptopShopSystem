@@ -430,3 +430,4 @@ LaptopShopSystem/bin
 LaptopShopSystem/obj
 LaptopShopSystem/Migrations
 LaptopShopSystem/Migrations/DataContextModelSnapshot.cs
+.vscode
